@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { postEvent } = require("./controllers/events.controller");
 
 const router = [

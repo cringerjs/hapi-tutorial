@@ -4,6 +4,7 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
+    "dev:server": "nodemon --watch './**/*.js' --exec 'node' index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +14,9 @@
     "@hapi/eslint-plugin": "^6.0.0",
     "@hapi/hapi": "^21.3.1",
     "stripe": "^11.17.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.22"
   }
 }

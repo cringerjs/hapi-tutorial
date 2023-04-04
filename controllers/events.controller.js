@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SK_TEST);
+const stripe = require('stripe')(process.env.STRIPE_SK_LIVE);
 // const endpointSecret = 'whsec_zEFwzuPP81dqYOvx15FN6uD0EgxcEsEY';
 
 const getEvent = (request, h) => {

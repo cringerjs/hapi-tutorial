@@ -1,0 +1,17 @@
+{
+  "name": "hapi-tutorial",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/eslint-plugin": "^6.0.0",
+    "@hapi/hapi": "^21.3.1",
+    "stripe": "^11.17.0"
+  }
+}

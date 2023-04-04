@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { postEvent } = require("./controllers/events.controller");
+const { postEvent, getEvent } = require("./controllers/events.controller");
 
 const router = [
   {
@@ -9,6 +9,11 @@ const router = [
       return "Hello World!";
     }
   },
+	{
+		method: "GET",
+		path: "/stripe_webhooks",
+		handler: getEvent
+	},
 	{
 		method: "POST",
 		path: "/stripe_webhooks",

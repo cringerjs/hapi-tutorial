@@ -1,6 +1,10 @@
 const stripe = require('stripe')(process.env.STRIPE_SK_TEST);
 // const endpointSecret = 'whsec_zEFwzuPP81dqYOvx15FN6uD0EgxcEsEY';
 
+const getEvent = (request, h) => {
+  return 'Stripe Webhook';
+}
+
 const postEvent = (request, h) => {
   let event = request.payload;
 
@@ -32,6 +36,27 @@ const postEvent = (request, h) => {
     case 'invoice.payment_failed':
       const invoicePaymentFailed = event.data.object;
       // Then define and call a function to handle the event invoice.payment_failed
+      const mailObj = {
+        "api_key": "api-B5CCEAB2D30E11ED8E4FF23C91BBF4A0",
+        "to": ["Jeremy Schaffer <jschaffer@7thdi.com>"],
+        "sender": "HA Stripe Webhook <jschaffer@7thdi.com>",
+        "template_id": "1813490",
+        "template_data": {
+          "invoice": invoicePaymentFailed.id,
+          "customer": invoicePaymentFailed.customer,
+          "customer_name": invoicePaymentFailed.customer_name,
+          "customer_email": invoicePaymentFailed.customer_email
+        }
+      }
+
+      fetch('https://api.smtp2go.com/v3/email/send', {
+        method: 'POST',
+        body: JSON.stringify(mailObj),
+        headers: {
+          'content-type': 'application/json; charset=UTF-8'
+        },
+      });
+
       break;
     // ... handle other event types
     default:
@@ -43,5 +68,5 @@ const postEvent = (request, h) => {
 };
 
 module.exports = {
-  postEvent
+  postEvent, getEvent
 };
